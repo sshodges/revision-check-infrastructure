@@ -32,3 +32,7 @@ variable "availability_zones" {
   description = "VPC CIDR Block type"
   type        = list
 }
+
+variable "app_port" {
+  description = "VPC CIDR Block type"
+}
