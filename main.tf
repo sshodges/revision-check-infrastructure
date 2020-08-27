@@ -20,7 +20,27 @@ module "security" {
   environment = var.environment
   vpc_id      = module.network.vpc_id
   app_port    = var.app_port
+}
 
+module "role" {
+  source = "./modules/molecules/role"
+
+  app_name = format("%s-%s", var.environment, var.app_name)
+}
+
+module "ecs" {
+  source = "./modules/molecules/ecs"
+
+  app_name                    = format("%s-%s", var.environment, var.app_name)
+  environment                 = var.environment
+  app_port                    = var.app_port
+  fargate_cpu                 = var.fargate_cpu
+  fargate_memory              = var.fargate_memory
+  aws_region                  = var.aws_region
+  ecs_task_execution_role_arn = module.role.iam_arn
+  launch_type                 = var.launch_type
+  security_group_id           = module.security.ecs_tasks_id
+  subnet_ids                  = module.network.private_subnet_ids
 }
 
 

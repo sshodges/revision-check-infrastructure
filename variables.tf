@@ -36,3 +36,18 @@ variable "availability_zones" {
 variable "app_port" {
   description = "VPC CIDR Block type"
 }
+
+variable "fargate_cpu" {
+  default     = 256
+  description = "VPC CIDR Block type"
+}
+
+variable "fargate_memory" {
+  default     = 512
+  description = "VPC CIDR Block type"
+}
+
+variable "launch_type" {
+  default     = "FARGATE"
+  description = "VPC CIDR Block type"
+}

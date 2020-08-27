@@ -3,6 +3,10 @@ resource "aws_security_group" "this" {
   name   = var.app_name
   vpc_id = var.vpc_id
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   ingress {
     protocol        = "tcp"
     from_port       = var.app_port
