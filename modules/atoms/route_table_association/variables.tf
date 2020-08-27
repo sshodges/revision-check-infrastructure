@@ -2,8 +2,8 @@ variable "subnet_ids" {
   description = "The name of the application"
 }
 
-variable "route_table_ids" {
-  description = "The name of the environment"
+variable "route_table_id" {
+  description = ""
 }
 
 variable "length" {

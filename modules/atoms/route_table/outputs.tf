@@ -1,4 +1,4 @@
-output "ids" {
-  value       = "${aws_route_table.this.*.id}"
+output "id" {
+  value       = aws_route_table.this.id
   description = "Internet Gateway ID"
 }

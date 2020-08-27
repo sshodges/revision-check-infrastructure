@@ -1,9 +1,13 @@
 resource "aws_route_table" "this" {
   vpc_id = var.vpc_id
-  count  = length(var.cidrs)
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = var.igw
+  }
 
   tags = {
-    Name        = "${var.name}_${element(var.availability_zones, count.index)}"
+    Name        = "${var.name}"
     Environment = var.environment
   }
 }

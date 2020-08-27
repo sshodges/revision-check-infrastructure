@@ -8,10 +8,17 @@ resource "aws_security_group" "this" {
   }
 
   ingress {
-    protocol        = "tcp"
-    from_port       = var.app_port
-    to_port         = var.app_port
-    security_groups = var.security_id
+    protocol    = "tcp"
+    from_port   = var.app_port1
+    to_port     = var.app_port1
+    cidr_blocks = var.cidr_blocks1
+  }
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = var.app_port2
+    to_port     = var.app_port2
+    cidr_blocks = var.cidr_blocks2
   }
 
   egress {

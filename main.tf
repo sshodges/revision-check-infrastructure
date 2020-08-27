@@ -9,7 +9,6 @@ module "network" {
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   private_subnet_cidrs = var.private_subnet_cidrs
-  public_subnet_cidrs  = var.public_subnet_cidrs
   availability_zones   = var.availability_zones
 }
 
@@ -28,6 +27,17 @@ module "role" {
   app_name = format("%s-%s", var.environment, var.app_name)
 }
 
+module "alb" {
+  source = "./modules/molecules/alb"
+
+  app_name           = format("%s-%s", var.environment, var.app_name)
+  subnets_ids        = module.network.private_subnet_ids
+  security_group_ids = module.security.load_balancer_id
+  app_port           = var.app_port
+  vpc_id             = module.network.vpc_id
+}
+
+
 module "ecs" {
   source = "./modules/molecules/ecs"
 
@@ -39,6 +49,7 @@ module "ecs" {
   aws_region                  = var.aws_region
   ecs_task_execution_role_arn = module.role.iam_arn
   launch_type                 = var.launch_type
+  alb_target_id               = module.alb.target_id
   security_group_id           = module.security.ecs_tasks_id
   subnet_ids                  = module.network.private_subnet_ids
 }

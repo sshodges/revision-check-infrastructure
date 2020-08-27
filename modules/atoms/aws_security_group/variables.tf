@@ -10,11 +10,18 @@ variable "vpc_id" {
   description = "List of private cidrs, for every avalibility zone you want you need one. Example: 10.0.0.0/24 and 10.0.1.0/24"
 }
 
-variable "app_port" {
-  description = "List of private cidrs, for every avalibility zone you want you need one. Example: 10.0.0.0/24 and 10.0.1.0/24"
+variable "app_port1" {
+  description = ""
+}
+variable "app_port2" {
+  description = ""
+}
+variable "cidr_blocks1" {
+  default     = []
+  description = ""
 }
 
-variable "security_id" {
+variable "cidr_blocks2" {
   default     = []
-  description = "List of avalibility zones you want. Example: eu-west-1a and eu-west-1b"
+  description = ""
 }

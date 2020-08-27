@@ -38,6 +38,10 @@ variable "launch_type" {
   description = ""
 }
 
+variable "alb_target_id" {
+  description = ""
+}
+
 variable "app_count" {
   default     = 1
   description = ""

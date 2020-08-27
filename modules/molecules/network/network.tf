@@ -28,19 +28,18 @@ module "private_subnet" {
 module "private_route_table" {
   source = "../../atoms/route_table"
 
-  name               = var.app_name
-  environment        = var.environment
-  vpc_id             = module.vpc.id
-  cidrs              = var.private_subnet_cidrs
-  availability_zones = var.availability_zones
+  name        = var.app_name
+  environment = var.environment
+  vpc_id      = module.vpc.id
+  igw         = module.internet_gateway.igw
 }
 
 module "private_route_table_association" {
   source = "../../atoms/route_table_association"
 
-  subnet_ids      = module.private_subnet.ids
-  route_table_ids = module.private_route_table.ids
-  length          = length(var.private_subnet_cidrs)
+  subnet_ids     = module.private_subnet.ids
+  route_table_id = module.private_route_table.id
+  length         = length(var.private_subnet_cidrs)
 }
 
 

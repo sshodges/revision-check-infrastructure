@@ -33,7 +33,7 @@ module "ecs_service" {
   launch_type         = var.launch_type
   security_group_id   = var.security_group_id
   subnet_ids          = var.subnet_ids
-  alb_target_id       = var.fargate_memory
+  alb_target_id       = var.alb_target_id
   app_port            = var.app_port
   task_definition_arn = module.ecs_task_def.arn
 }

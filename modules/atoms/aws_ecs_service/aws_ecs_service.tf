@@ -12,7 +12,7 @@ resource "aws_ecs_service" "this" {
   }
 
   load_balancer {
-    target_group_arn = alb_target_id
+    target_group_arn = var.alb_target_id
     container_name   = var.app_name
     container_port   = var.app_port
   }

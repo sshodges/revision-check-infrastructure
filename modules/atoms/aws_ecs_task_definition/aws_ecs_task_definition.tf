@@ -2,6 +2,7 @@ data "template_file" "this" {
   template = "${file("${path.module}/templates/app.json.tpl")}"
 
   vars = {
+    app_name       = var.app_name
     app_image      = "${var.repository_url}:latest"
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
