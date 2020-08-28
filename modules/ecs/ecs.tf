@@ -53,5 +53,5 @@ resource "aws_ecs_service" "this" {
     container_port   = var.app_port
   }
 
-  depends_on = [var.alb_listener]
+  depends_on = [var.alb_listener, var.ecs_task_execution_role]
 }

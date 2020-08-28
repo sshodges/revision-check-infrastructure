@@ -48,6 +48,7 @@ module "ecs" {
   fargate_memory              = var.fargate_memory
   aws_region                  = var.aws_region
   ecs_task_execution_role_arn = module.role.iam_arn
+  ecs_task_execution_role     = module.role
   launch_type                 = var.launch_type
   alb_target_id               = module.alb.target_id
   alb_listener                = module.alb.alb_listener

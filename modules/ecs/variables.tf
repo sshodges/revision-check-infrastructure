@@ -11,6 +11,7 @@ variable "fargate_memory" {}
 variable "aws_region" {}
 
 variable "ecs_task_execution_role_arn" {}
+variable "ecs_task_execution_role" {}
 
 variable "security_group_id" {}
 
