@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "network" {
-  source = "./modules/molecules/network"
+  source = "./modules/network"
 
   app_name             = format("%s-%s", var.environment, var.app_name)
   environment          = var.environment
@@ -13,7 +13,7 @@ module "network" {
 }
 
 module "security" {
-  source = "./modules/molecules/security"
+  source = "./modules/security"
 
   app_name    = format("%s-%s", var.environment, var.app_name)
   environment = var.environment
@@ -22,13 +22,13 @@ module "security" {
 }
 
 module "role" {
-  source = "./modules/molecules/role"
+  source = "./modules/role"
 
   app_name = format("%s-%s", var.environment, var.app_name)
 }
 
 module "alb" {
-  source = "./modules/molecules/alb"
+  source = "./modules/alb"
 
   app_name           = format("%s-%s", var.environment, var.app_name)
   subnets_ids        = module.network.private_subnet_ids
@@ -39,7 +39,7 @@ module "alb" {
 
 
 module "ecs" {
-  source = "./modules/molecules/ecs"
+  source = "./modules/ecs"
 
   app_name                    = format("%s-%s", var.environment, var.app_name)
   environment                 = var.environment
@@ -50,6 +50,7 @@ module "ecs" {
   ecs_task_execution_role_arn = module.role.iam_arn
   launch_type                 = var.launch_type
   alb_target_id               = module.alb.target_id
+  alb_listener                = module.alb.alb_listener
   security_group_id           = module.security.ecs_tasks_id
   subnet_ids                  = module.network.private_subnet_ids
 }

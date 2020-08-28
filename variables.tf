@@ -19,35 +19,31 @@ variable "vpc_cidr" {
 }
 
 variable "private_subnet_cidrs" {
-  description = "Name of the application"
+  description = "CIDRS of private subnet"
   type        = list
 }
 
-variable "public_subnet_cidrs" {
-  description = "Environment name: dev, stge, test, prod"
-  type        = list
-}
 
 variable "availability_zones" {
-  description = "VPC CIDR Block type"
+  description = "List of availablility zones"
   type        = list
 }
 
 variable "app_port" {
-  description = "VPC CIDR Block type"
+  description = "Port the app is run on, eg 5000"
 }
 
 variable "fargate_cpu" {
   default     = 256
-  description = "VPC CIDR Block type"
+  description = "Provisioned Fargate CPU"
 }
 
 variable "fargate_memory" {
   default     = 512
-  description = "VPC CIDR Block type"
+  description = "Provisioned Fargate memory"
 }
 
 variable "launch_type" {
   default     = "FARGATE"
-  description = "VPC CIDR Block type"
+  description = "ECS and Task Def launch type"
 }
